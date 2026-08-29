@@ -1,0 +1,98 @@
+---
+import { languages, type SupportedLanguage } from '../i18n/ui';
+import { getLocalizedPath } from '../i18n/utils';
+
+interface Props {
+  currentLang: SupportedLanguage;
+}
+
+const { currentLang } = Astro.props;
+const currentLanguage = languages[currentLang];
+const languageList = Object.entries(languages);
+---
+
+<div class="relative inline-block text-left language-dropdown-wrapper">
+  <button
+    type="button"
+    id="lang-dropdown-btn"
+    aria-expanded="false"
+    aria-haspopup="true"
+    aria-label="Select language"
+    class="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl border border-slate-200 dark:border-slate-700 transition-colors shadow-sm cursor-pointer"
+  >
+    <span class="text-base leading-none" role="img" aria-label={currentLanguage.name}>
+      {currentLanguage.flag}
+    </span>
+    <span class="hidden lg:inline-block">{currentLanguage.name}</span>
+    <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+
+  <div
+    id="lang-dropdown-menu"
+    class="hidden absolute right-0 z-50 mt-2 w-48 origin-top-right rounded-2xl bg-white dark:bg-slate-900 shadow-xl ring-1 ring-black/5 dark:ring-white/10 border border-slate-200/80 dark:border-slate-800 py-1.5 focus:outline-none backdrop-blur-md"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="lang-dropdown-btn"
+  >
+    {languageList.map(([code, data]) => {
+      const isSelected = code === currentLang;
+      const targetUrl = getLocalizedPath(code as SupportedLanguage, Astro.url.pathname);
+
+      return (
+        <a
+          href={targetUrl}
+          hreflang={code}
+          role="menuitem"
+          class={`flex items-center justify-between px-4 py-2.5 text-sm transition-colors ${
+            isSelected
+              ? 'bg-brand-teal/10 text-brand-teal font-semibold dark:bg-brand-teal/20 dark:text-brand-teal-light'
+              : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+          }`}
+        >
+          <span class="flex items-center gap-2.5">
+            <span class="text-base leading-none">{data.flag}</span>
+            <span>{data.name}</span>
+          </span>
+          {isSelected && (
+            <svg class="w-4 h-4 text-brand-teal" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+          )}
+        </a>
+      );
+    })}
+  </div>
+</div>
+
+<script>
+  function setupLangDropdown() {
+    const btn = document.getElementById('lang-dropdown-btn');
+    const menu = document.getElementById('lang-dropdown-menu');
+
+    if (!btn || !menu) return;
+
+    const toggleMenu = (e: MouseEvent) => {
+      e.stopPropagation();
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', (!isExpanded).toString());
+      menu.classList.toggle('hidden');
+    };
+
+    const closeMenu = (e: MouseEvent) => {
+      if (!btn.contains(e.target as Node) && !menu.contains(e.target as Node)) {
+        btn.setAttribute('aria-expanded', 'false');
+        menu.classList.add('hidden');
+      }
+    };
+
+    btn.addEventListener('click', toggleMenu);
+    document.addEventListener('click', closeMenu);
+  }
+
+  // Run on page load
+  setupLangDropdown();
+  // Support Astro page transitions if any
+  document.addEventListener('astro:page-load', setupLangDropdown);
+</script>

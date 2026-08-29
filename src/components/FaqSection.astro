@@ -1,0 +1,54 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { SupportedLanguage } from '../i18n/ui';
+
+interface Props {
+  lang: SupportedLanguage;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const faqItems = [
+  { qKey: 'faq.q1', aKey: 'faq.a1' },
+  { qKey: 'faq.q2', aKey: 'faq.a2' },
+  { qKey: 'faq.q3', aKey: 'faq.a3' },
+  { qKey: 'faq.q4', aKey: 'faq.a4' },
+  { qKey: 'faq.q5', aKey: 'faq.a5' },
+  { qKey: 'faq.q6', aKey: 'faq.a6' },
+];
+---
+
+<section id="faq" class="py-20">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-teal/10 dark:bg-brand-teal/20 text-brand-teal dark:text-brand-teal-light border border-brand-teal/20">
+        {t('faq.badge')}
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        {t('faq.title')}
+      </h2>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400">
+        {t('faq.subtitle')}
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      {faqItems.map((item, index) => (
+        <details class="group rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm transition-all duration-200 open:border-brand-teal/40 dark:open:border-brand-teal/40 open:shadow-md">
+          <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-base sm:text-lg text-slate-900 dark:text-white list-none select-none focus:outline-none">
+            <span class="pr-4">{t(item.qKey as any)}</span>
+            <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center flex-shrink-0 transition-transform duration-200 group-open:rotate-180 group-open:bg-brand-teal group-open:text-white">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/80 mt-2">
+            <p>{t(item.aKey as any)}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

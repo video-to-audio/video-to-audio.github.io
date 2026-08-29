@@ -1,0 +1,72 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { SupportedLanguage } from '../i18n/ui';
+
+interface Props {
+  lang: SupportedLanguage;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const steps = [
+  {
+    num: '01',
+    titleKey: 'how.step1Title',
+    descKey: 'how.step1Desc',
+    icon: `<svg class="w-6 h-6 text-brand-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>`
+  },
+  {
+    num: '02',
+    titleKey: 'how.step2Title',
+    descKey: 'how.step2Desc',
+    icon: `<svg class="w-6 h-6 text-brand-ochre-dark dark:text-brand-ochre" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>`
+  },
+  {
+    num: '03',
+    titleKey: 'how.step3Title',
+    descKey: 'how.step3Desc',
+    icon: `<svg class="w-6 h-6 text-brand-coral" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`
+  }
+];
+---
+
+<section id="how-it-works" class="py-20 border-b border-slate-200/80 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-900/30">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-ochre/15 text-brand-ochre-dark dark:text-brand-ochre border border-brand-ochre/30">
+        {t('how.badge')}
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        {t('how.title')}
+      </h2>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400">
+        {t('how.subtitle')}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+      {steps.map((step, idx) => (
+        <div class="relative p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-6">
+            <div class="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center">
+              <Fragment set:html={step.icon} />
+            </div>
+            <span class="text-3xl font-black text-slate-200 dark:text-slate-800 tracking-tighter select-none">
+              {step.num}
+            </span>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+              {t(step.titleKey as any)}
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              {t(step.descKey as any)}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

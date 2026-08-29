@@ -1,0 +1,62 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { SupportedLanguage } from '../i18n/ui';
+import LanguagePicker from './LanguagePicker.astro';
+import ThemeToggle from './ThemeToggle';
+
+interface Props {
+  lang: SupportedLanguage;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md transition-colors">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+    <!-- Brand Logo -->
+    <a href={lang === 'en' ? '/' : `/${lang}/`} class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal rounded-xl">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-teal via-brand-teal-light to-brand-ochre flex items-center justify-center shadow-md shadow-brand-teal/20 group-hover:scale-105 transition-transform duration-200">
+        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-bold text-lg tracking-tight text-slate-900 dark:text-white group-hover:text-brand-teal dark:group-hover:text-brand-teal-light transition-colors">
+          {t('nav.brand')}
+        </span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation (Large screens only) -->
+    <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+      <a href="#features" class="hover:text-brand-teal dark:hover:text-brand-teal-light transition-colors">{t('nav.features')}</a>
+      <a href="#how-it-works" class="hover:text-brand-teal dark:hover:text-brand-teal-light transition-colors">{t('nav.howItWorks')}</a>
+      <a href="#formats" class="hover:text-brand-teal dark:hover:text-brand-teal-light transition-colors">{t('nav.formats')}</a>
+      <a href="#faq" class="hover:text-brand-teal dark:hover:text-brand-teal-light transition-colors">{t('nav.faq')}</a>
+    </nav>
+
+    <!-- Controls: Language Picker + Theme Toggle + Support Button -->
+    <div class="flex items-center gap-2 sm:gap-2.5">
+      <LanguagePicker currentLang={lang} />
+      <ThemeToggle client:load label={t('theme.toggle')} />
+
+      <!-- Support Developer Button (Icon on mobile/tablet, full text on desktop) -->
+      <a
+        href="https://buymeacoffee.com/kisharadilz"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Support the Developer"
+        title="Support the Developer"
+        class="inline-flex items-center gap-1.5 px-2.5 lg:px-3.5 py-2 text-xs sm:text-sm font-bold text-amber-950 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300 hover:from-amber-400 hover:to-amber-500 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all border border-amber-400/80 cursor-pointer"
+      >
+        <svg class="w-4 h-4 text-amber-950 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/>
+        </svg>
+        <span class="hidden lg:inline whitespace-nowrap">{t('nav.support')}</span>
+      </a>
+    </div>
+  </div>
+</header>

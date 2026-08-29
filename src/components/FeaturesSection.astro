@@ -1,0 +1,82 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { SupportedLanguage } from '../i18n/ui';
+
+interface Props {
+  lang: SupportedLanguage;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const features = [
+  {
+    icon: `<svg class="w-6 h-6 text-brand-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    titleKey: 'features.item1Title',
+    descKey: 'features.item1Desc',
+    badgeColor: 'bg-brand-teal/10 dark:bg-brand-teal/20 border-brand-teal/20 text-brand-teal'
+  },
+  {
+    icon: `<svg class="w-6 h-6 text-brand-ochre-dark dark:text-brand-ochre" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+    titleKey: 'features.item2Title',
+    descKey: 'features.item2Desc',
+    badgeColor: 'bg-brand-ochre/10 dark:bg-brand-ochre/20 border-brand-ochre/30 text-brand-ochre-dark dark:text-brand-ochre'
+  },
+  {
+    icon: `<svg class="w-6 h-6 text-brand-coral" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+    titleKey: 'features.item3Title',
+    descKey: 'features.item3Desc',
+    badgeColor: 'bg-brand-coral/10 dark:bg-brand-coral/20 border-brand-coral/20 text-brand-coral'
+  },
+  {
+    icon: `<svg class="w-6 h-6 text-brand-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`,
+    titleKey: 'features.item4Title',
+    descKey: 'features.item4Desc',
+    badgeColor: 'bg-brand-teal/10 dark:bg-brand-teal/20 border-brand-teal/20 text-brand-teal'
+  },
+  {
+    icon: `<svg class="w-6 h-6 text-brand-ochre-dark dark:text-brand-ochre" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>`,
+    titleKey: 'features.item5Title',
+    descKey: 'features.item5Desc',
+    badgeColor: 'bg-brand-ochre/10 dark:bg-brand-ochre/20 border-brand-ochre/30 text-brand-ochre-dark dark:text-brand-ochre'
+  },
+  {
+    icon: `<svg class="w-6 h-6 text-brand-coral" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+    titleKey: 'features.item6Title',
+    descKey: 'features.item6Desc',
+    badgeColor: 'bg-brand-coral/10 dark:bg-brand-coral/20 border-brand-coral/20 text-brand-coral'
+  }
+];
+---
+
+<section id="features" class="py-20 border-b border-slate-200/80 dark:border-slate-800/80">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-teal/10 dark:bg-brand-teal/20 text-brand-teal dark:text-brand-teal-light border border-brand-teal/20">
+        {t('features.badge')}
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        {t('features.title')}
+      </h2>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400">
+        {t('features.subtitle')}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      {features.map(feature => (
+        <div class="group relative p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-teal/40 dark:hover:border-brand-teal/40 transition-all duration-300">
+          <div class={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border transition-transform duration-300 group-hover:scale-110 ${feature.badgeColor}`}>
+            <Fragment set:html={feature.icon} />
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+            {t(feature.titleKey as any)}
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            {t(feature.descKey as any)}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

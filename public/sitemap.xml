@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- English (Root) -->
+  <url>
+    <loc>https://video-to-audio.github.io/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://video-to-audio.github.io/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://video-to-audio.github.io/es/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://video-to-audio.github.io/pt/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://video-to-audio.github.io/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://video-to-audio.github.io/fr/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://video-to-audio.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://video-to-audio.github.io/" />
+  </url>
+
+  <!-- Spanish -->
+  <url>
+    <loc>https://video-to-audio.github.io/es/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://video-to-audio.github.io/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://video-to-audio.github.io/es/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://video-to-audio.github.io/pt/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://video-to-audio.github.io/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://video-to-audio.github.io/fr/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://video-to-audio.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://video-to-audio.github.io/" />
+  </url>
+
+  <!-- Portuguese -->
+  <url>
+    <loc>https://video-to-audio.github.io/pt/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://video-to-audio.github.io/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://video-to-audio.github.io/es/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://video-to-audio.github.io/pt/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://video-to-audio.github.io/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://video-to-audio.github.io/fr/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://video-to-audio.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://video-to-audio.github.io/" />
+  </url>
+
+  <!-- German -->
+  <url>
+    <loc>https://video-to-audio.github.io/de/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://video-to-audio.github.io/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://video-to-audio.github.io/es/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://video-to-audio.github.io/pt/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://video-to-audio.github.io/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://video-to-audio.github.io/fr/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://video-to-audio.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://video-to-audio.github.io/" />
+  </url>
+
+  <!-- French -->
+  <url>
+    <loc>https://video-to-audio.github.io/fr/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://video-to-audio.github.io/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://video-to-audio.github.io/es/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://video-to-audio.github.io/pt/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://video-to-audio.github.io/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://video-to-audio.github.io/fr/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://video-to-audio.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://video-to-audio.github.io/" />
+  </url>
+
+  <!-- Japanese -->
+  <url>
+    <loc>https://video-to-audio.github.io/ja/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://video-to-audio.github.io/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://video-to-audio.github.io/es/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://video-to-audio.github.io/pt/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://video-to-audio.github.io/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://video-to-audio.github.io/fr/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://video-to-audio.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://video-to-audio.github.io/" />
+  </url>
+</urlset>

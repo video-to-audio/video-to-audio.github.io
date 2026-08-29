@@ -1,0 +1,280 @@
+---
+import { languages, type SupportedLanguage } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  lang: SupportedLanguage;
+  customTitle?: string;
+  customDescription?: string;
+}
+
+const { lang, customTitle, customDescription } = Astro.props;
+const t = useTranslations(lang);
+const currentLangMeta = languages[lang];
+
+const siteUrl = 'https://video-to-audio.github.io';
+const canonicalUrl = lang === 'en' ? `${siteUrl}/` : `${siteUrl}/${lang}/`;
+const ogImageUrl = 'https://res.cloudinary.com/dpx6w78bt/image/upload/f_auto/q_auto/v1786342039/Online_Tool_rc1ybr.png';
+
+const title = customTitle || t('site.title');
+const description = customDescription || t('site.description');
+const keywords = t('site.keywords');
+
+const hreflangs = [
+  { code: 'en', href: `${siteUrl}/` },
+  { code: 'es', href: `${siteUrl}/es/` },
+  { code: 'pt', href: `${siteUrl}/pt/` },
+  { code: 'de', href: `${siteUrl}/de/` },
+  { code: 'fr', href: `${siteUrl}/fr/` },
+  { code: 'ja', href: `${siteUrl}/ja/` },
+  { code: 'x-default', href: `${siteUrl}/` },
+];
+
+// Structured Data Schemas (100% Comprehensive JSON-LD)
+const webAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  'name': 'VideoToAudio WASM Studio',
+  'url': canonicalUrl,
+  'image': ogImageUrl,
+  'description': description,
+  'applicationCategory': 'MultimediaApplication',
+  'operatingSystem': 'Any (Browser-based WebAssembly)',
+  'browserRequirements': 'Requires JavaScript and WebAssembly support',
+  'offers': {
+    '@type': 'Offer',
+    'price': '0',
+    'priceCurrency': 'USD'
+  },
+  'publisher': {
+    '@type': 'Organization',
+    'name': 'VideoToAudio WASM Studio',
+    'url': siteUrl,
+    'logo': `${siteUrl}/favicon.svg`
+  },
+  'featureList': [
+    '100% Client-Side WebAssembly Audio Extraction',
+    'Zero Server Uploads & Total Privacy',
+    'No File Size Limits',
+    'MP3, WAV, AAC, and M4A Output Support',
+    'Bitrate Selection up to 320 kbps and Lossless PCM'
+  ]
+};
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  'name': t('how.title'),
+  'description': t('how.subtitle'),
+  'image': ogImageUrl,
+  'step': [
+    {
+      '@type': 'HowToStep',
+      'position': 1,
+      'name': t('how.step1Title'),
+      'text': t('how.step1Desc')
+    },
+    {
+      '@type': 'HowToStep',
+      'position': 2,
+      'name': t('how.step2Title'),
+      'text': t('how.step2Desc')
+    },
+    {
+      '@type': 'HowToStep',
+      'position': 3,
+      'name': t('how.step3Title'),
+      'text': t('how.step3Desc')
+    }
+  ]
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': [
+    {
+      '@type': 'Question',
+      'name': t('faq.q1'),
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': t('faq.a1')
+      }
+    },
+    {
+      '@type': 'Question',
+      'name': t('faq.q2'),
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': t('faq.a2')
+      }
+    },
+    {
+      '@type': 'Question',
+      'name': t('faq.q3'),
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': t('faq.a3')
+      }
+    },
+    {
+      '@type': 'Question',
+      'name': t('faq.q4'),
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': t('faq.a4')
+      }
+    },
+    {
+      '@type': 'Question',
+      'name': t('faq.q5'),
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': t('faq.a5')
+      }
+    },
+    {
+      '@type': 'Question',
+      'name': t('faq.q6'),
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': t('faq.a6')
+      }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {
+      '@type': 'ListItem',
+      'position': 1,
+      'name': 'Home',
+      'item': siteUrl
+    },
+    {
+      '@type': 'ListItem',
+      'position': 2,
+      'name': title,
+      'item': canonicalUrl
+    }
+  ]
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  'name': 'VideoToAudio WASM Studio',
+  'url': siteUrl,
+  'inLanguage': ['en', 'es', 'pt', 'de', 'fr', 'ja']
+};
+---
+
+<!doctype html>
+<html lang={lang} dir={currentLangMeta.dir}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-ELXGS8SMCP"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-ELXGS8SMCP');
+    </script>
+
+    <!-- Core SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="VideoToAudio WASM Studio" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Search Engine Directives -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- Theme & App Configurations -->
+    <meta name="theme-color" content="#249D8F" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#020617" media="(prefers-color-scheme: dark)" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="VideoToAudio" />
+    <meta name="application-name" content="VideoToAudio" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Bidirectional Hreflang Tags (All 6 Locales + x-default) -->
+    {hreflangs.map(link => (
+      <link rel="alternate" hreflang={link.code} href={link.href} />
+    ))}
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="VideoToAudio WASM Studio" />
+    <meta property="og:locale" content={lang} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:secure_url" content={ogImageUrl} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={title} />
+
+    <!-- Fonts Preconnect & Async Load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+    <!-- Anti-FOUC Theme Script (Executed synchronously before DOM render) -->
+    <script is:inline>
+      (function() {
+        try {
+          const storedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {
+          // localStorage access might be restricted in some iframe environments
+        }
+      })();
+    </script>
+
+    <!-- Schema.org Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  </head>
+  <body class="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased transition-colors duration-200 selection:bg-brand-teal/20 selection:text-brand-teal dark:selection:bg-brand-teal/30 dark:selection:text-brand-teal-light">
+    <div class="relative flex flex-col min-h-screen">
+      <Header lang={lang} />
+      <main class="flex-grow">
+        <slot />
+      </main>
+      <Footer lang={lang} />
+    </div>
+  </body>
+</html>
